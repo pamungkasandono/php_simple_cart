@@ -60,6 +60,11 @@ $cart_data = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                 </table>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-8">
+                <a class="btn btn-success float-end" href="checkout.php">Pesan</a>
+            </div>
+        </div>
 
 
     </div>
