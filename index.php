@@ -14,7 +14,7 @@
                     <th width="50"></th>
                 </tr>
             </thead>
-            <tbody id="cart_data">
+            <tbody>
                 <tr>
                     <th>1</th>
                     <td>Nasi Kuning + Ayam + Telor Asin + Bihun Goreng</td>

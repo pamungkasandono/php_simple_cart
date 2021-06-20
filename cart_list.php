@@ -21,9 +21,9 @@ $cart_data = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th width="80">Harga</th>
+                            <th width="120">Harga</th>
                             <th width="80">Jumlah</th>
-                            <th width="80">Subtotal</th>
+                            <th width="120">Subtotal</th>
                             <th width="50"></th>
                         </tr>
                     </thead>
@@ -33,29 +33,27 @@ $cart_data = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                         $no = 1;
                         $pos = 0;
                         foreach ($cart_data as $key => $row) :
-                            $total += $row["harga"];
+                            $sub_total = $row['harga'] * $row['jumlah'];
+                            $total += $sub_total;
                         ?>
                             <tr>
                                 <th><?php echo $no++ ?></th>
                                 <td><?php echo $row['nama'] ?></td>
-                                <td><?php echo $row['harga'] ?></td>
+                                <td><?php echo "Rp. " . number_format($row['harga']) ?></td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="cart_data.php?plus=<?php echo $key ?>&val=1" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i></a>
-                                        <button type="button" class="btn btn-secondary" disabled>1</button>
-                                        <a href="cart_data.php?minus=<?php echo $key ?>&val=1" class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></a>
+                                        <a href="cart_data.php?minus=<?php echo $key ?>&val=1" class="btn btn-warning btn-sm"><i class="fas fa-minus"></i></a>
+                                        <button class="btn btn-sm" disabled><?php echo $row['jumlah'] ?></button>
+                                        <a href="cart_data.php?plus=<?php echo $key ?>&val=1" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i></a>
                                     </div>
                                 </td>
-                                <td>
-                                    <?php echo $row['harga'] ?>
-                                </td>
-                                <!-- <td><?php echo $key ?></td> -->
+                                <td><?php echo "Rp. " . number_format($sub_total) ?></td>
                                 <td><a href="cart_data.php?hapus=<?php echo $key ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
                             <th colspan="4" style="text-align: end;">Total</th>
-                            <th><?php echo $total ?></th>
+                            <th><?php echo "Rp. " . number_format($total) ?></th>
                             <th></th>
                         </tr>
                     </tbody>
